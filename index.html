@@ -77,11 +77,20 @@
             let correctLetters = userInput.filter(letter => correct.includes(letter)).length;
             let messageABCDEF = "";
 
-            if (userInput.join('') === "CEDBFA") {
-                messageABCDEF = "🎉 Victoire !!! Le code pour écouter l'histoire complète est 408543";
-            } else if (correctLetters === 6) {
-                messageABCDEF = "✅ L'ordre des 6 cartes n'est pas correct.";
-            } else {
+           const messagesIncorrectOrder = [
+    "✅ L'ordre des 6 cartes n'est pas correct.",
+    "✅ Ce n'est pas le bon ordre, essayez encore !",
+    "✅ Hum... L'ordre est incorrect, retentez votre chance.",
+    "✅ Presque ! Mais les cartes ne sont pas dans le bon ordre.",
+    "✅ Bien essayé, mais ce n'est pas le bon ordre."
+];
+
+if (userInput.join('') === "CEDBFA") {
+    messageABCDEF = "🎉 Victoire !!! Le code pour écouter l'histoire complète est 408543";
+} else if (correctLetters === 6) {
+    messageABCDEF = messagesIncorrectOrder[Math.floor(Math.random() * messagesIncorrectOrder.length)];
+}
+ else {
                 messageABCDEF = `❌ ${correctLetters} carte(s) OK.`;
             }
 
